@@ -24,7 +24,7 @@ public class txnscript
 	private static String jdbcHerokuMachine = "ec2-54-228-209-117.eu-west-1.compute.amazonaws.com" ;
 	private static String jdbcHerokuDatabase = "df5k605o1p2609" ;
 	private static String jdbcHerokuUser = "bjioawjysfjwca" ;
-	private static String jdbcHerokuPass = ":6a168300fb40aafb5109f8726c9bfd894c667c0ac3aa70daee97a2c3755bc277" ;
+	private static String jdbcHerokuPass = "6a168300fb40aafb5109f8726c9bfd894c667c0ac3aa70daee97a2c3755bc277" ;
 
 
 // exemple MYSQL LOCAL
