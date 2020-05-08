@@ -313,11 +313,11 @@ public class txnscript
 
 	
 	
-    public static String updateVille (Serial id, String nom, Integer codePostal)
+    public static String updateVille (Integer id, String nom, Integer codePostal)
     {
         String result = "" ;
 		
-		String sql = "UPDATE Villes SET nom = ?, code_postal = ? WHERE id = ?" ;
+		String sql = "UPDATE Villes SET nom = ?, code_postal = ? WHERE id = 0" ;
 
 		try
 		{
