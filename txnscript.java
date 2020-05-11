@@ -313,17 +313,17 @@ public class txnscript
 
 	
 	
-    public static String updateVille (Integer id, String nom, Integer codePostal)
+    public static String insertVille (String nom, Integer codePostal)
     {
         String result = "" ;
 		
-		String sql = "UPDATE Villes SET code_postal = ? WHERE nom = ?" ;
+		String sql = "INSERT INTO Villes (nom, code_postal) VALUES(?,?)" ;
 
 		try
 		{
 				PreparedStatement pstmt = cnx.prepareStatement(sql) ;
-				pstmt.setDouble(1, codePostal);
-				pstmt.setString(2, nom);
+				pstmt.setString(1, nom);
+				pstmt.setDouble(2, codePostal);
 				pstmt.executeUpdate();
 		}
 		catch (SQLException e)
@@ -331,8 +331,7 @@ public class txnscript
 			System.out.println(e.getMessage());
 		}
 			
-		result = result + id ;
-		result = result + "/" + codePostal ;
+		result = result + codePostal ;
 		result = result + "/" + nom ;
 		result = result + saut_de_ligne ;		
 		return result ;
