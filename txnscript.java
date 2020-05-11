@@ -21,10 +21,10 @@ public class txnscript
 {
 	
 	// coller ici les paramètres issu de Heroku
-	private static String jdbcHerokuMachine = "ec2-54-228-209-117.eu-west-1.compute.amazonaws.com" ;
-	private static String jdbcHerokuDatabase = "df5k605o1p2609" ;
-	private static String jdbcHerokuUser = "bjioawjysfjwca" ;
-	private static String jdbcHerokuPass = "6a168300fb40aafb5109f8726c9bfd894c667c0ac3aa70daee97a2c3755bc277" ;
+	private static String jdbcHerokuMachine = "ec2-54-247-169-129.eu-west-1.compute.amazonaws.com" ;
+	private static String jdbcHerokuDatabase = "d3hsj1so47eqjj" ;
+	private static String jdbcHerokuUser = "syouxanapvrydj" ;
+	private static String jdbcHerokuPass = "847ed14becf1de4368ba3831654c20ed103e13e2dd78b9acbc9210cccc8cb3d9" ;
 
 
 // exemple MYSQL LOCAL
@@ -137,8 +137,6 @@ public class txnscript
 			return false ;
 		}
 	}
-
-
 	
     public static boolean checkMySQL()
     {
@@ -222,6 +220,31 @@ public class txnscript
 			
 		return result ;
     }
+
+	
+    public static String insertVille (String nom, Integer codePostal)
+    {
+        String result = "" ;
+		
+		String sql = "INSERT INTO Villes (nom, code_postal) VALUES(?,?)" ;
+
+		try
+		{
+				PreparedStatement pstmt = cnx.prepareStatement(sql) ;
+				pstmt.setString(1, nom);
+				pstmt.setDouble(2, codePostal);
+				pstmt.executeUpdate();
+		}
+		catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+			
+		result = result + codePostal ;
+		result = result + "/" + nom ;
+		result = result + saut_de_ligne ;		
+		return result ;
+    }
 	
     public static String list()
     {
@@ -288,17 +311,17 @@ public class txnscript
 
 	
 	
-    public static String insertVille (String nom, Integer codePostal)
+       public static String updateVille (Integer id, String nom, Integer codePostal)
     {
         String result = "" ;
 		
-		String sql = "INSERT INTO Villes (nom, code_postal) VALUES(?,?)" ;
+		String sql = "UPDATE Villes SET code_postal = ? WHERE nom = ?" ;
 
 		try
 		{
 				PreparedStatement pstmt = cnx.prepareStatement(sql) ;
-				pstmt.setString(1, nom);
-				pstmt.setDouble(2, codePostal);
+				pstmt.setString(2, nom);
+				pstmt.setDouble(1, codePostal);
 				pstmt.executeUpdate();
 		}
 		catch (SQLException e)
@@ -306,13 +329,12 @@ public class txnscript
 			System.out.println(e.getMessage());
 		}
 			
-		result = result + codePostal ;
+		result = result + id ;
+		result = result + "/" + codePostal ;
 		result = result + "/" + nom ;
 		result = result + saut_de_ligne ;		
 		return result ;
     }
-	
-
 	
 	
     public static String close()
