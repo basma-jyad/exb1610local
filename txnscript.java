@@ -222,31 +222,6 @@ public class txnscript
 			
 		return result ;
     }
-
-	
-    public static String insertVille (String nom, Integer codePostal)
-    {
-        String result = "" ;
-		
-		String sql = "INSERT INTO Villes (nom, code_postal) VALUES(?,?)" ;
-
-		try
-		{
-				PreparedStatement pstmt = cnx.prepareStatement(sql) ;
-				pstmt.setString(1, nom);
-				pstmt.setDouble(2, codePostal);
-				pstmt.executeUpdate();
-		}
-		catch (SQLException e)
-		{
-			System.out.println(e.getMessage());
-		}
-			
-		result = result + codePostal ;
-		result = result + "/" + nom ;
-		result = result + saut_de_ligne ;		
-		return result ;
-    }
 	
     public static String list()
     {
